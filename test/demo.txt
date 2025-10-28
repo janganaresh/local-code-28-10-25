@@ -1,0 +1,109 @@
+fetch(url)
+  .then(response => response.json())
+  .then(data => {
+    const tbody = document.getElementById("reportTableBody");
+    tbody.innerHTML = ""; // Clear old data
+
+    data.forEach((item, index) => {
+      const row = document.createElement("tr");
+      row.classList.add("data-row");
+      row.setAttribute("data-index", index);
+
+      row.innerHTML = `
+        <td>${item['Table ID']}</td>
+        <td>${item['Pile No']}</td>
+        <td>${item['Task Date']}</td>
+
+        <!-- CASE 1 checkboxes -->
+        <td><input type="checkbox" class="case1_zinc"></td>
+        <td><input type="checkbox" class="case1_bare"></td>
+        <td><input type="checkbox" class="case1_rust"></td>
+
+        <!-- CASE 2 checkboxes -->
+        <td><input type="checkbox" class="case2_zinc"></td>
+        <td><input type="checkbox" class="case2_bare"></td>
+
+        <!-- CASE 3 checkboxes -->
+        <td><input type="checkbox" class="case3_zinc"></td>
+        <td><input type="checkbox" class="case3_bare"></td>
+        <td><input type="checkbox" class="case3_rust"></td>
+
+        <td><input type="checkbox" class="case4_rust"></td>
+        <!-- Status -->
+        <td>${item['Assessment Status']}</td>
+
+        <!-- CASE selection radio buttons under columns Case1–Case4 -->
+        <td><input type="radio" name="fi_case_${index}" class="case_fi" data-case="1"></td>
+        <td><input type="radio" name="fi_case_${index}" class="case_fi" data-case="2"></td>
+        <td><input type="radio" name="fi_case_${index}" class="case_fi" data-case="3"></td>
+        <td><input type="radio" name="fi_case_${index}" class="case_fi" data-case="4"></td>
+
+        
+      `;
+
+      tbody.appendChild(row);
+    });
+  })
+
+
+  document.getElementById('updateDatabaseBtn').addEventListener('click', () => {
+    const dataRows = document.querySelectorAll("#reportTableBody .data-row");
+    const dataToSend = [];
+
+    dataRows.forEach(dataRow => {
+        const tableId = dataRow.querySelector("td:nth-child(1)").innerText.trim();
+        const pileNo = dataRow.querySelector("td:nth-child(2)").innerText.trim();
+        const selectedRadio = dataRow.querySelector("input[type='radio']:checked");
+
+        if (selectedRadio) {
+            dataToSend.push({
+                table_id: tableId,
+                pile_no: pileNo,
+                assessment_case: `Case${selectedRadio.dataset.case}`
+            });
+        }
+    });
+
+    // Send to backend
+    fetch('/update_assessment_case', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(dataToSend)
+    })
+    .then(res => res.json())
+    .then(response => {
+        alert(response.message || 'Updated!');
+    })
+    .catch(err => {
+        console.error('Update error:', err);
+    });
+});
+
+
+<button type="button" id="updateDatabaseBtn" class="button-rep" style="background-color: #16a52e; color: white;">Update Database</button>
+
+@app.route('/update_assessment_case', methods=['POST'])
+def update_assessment_case():
+    data = request.get_json()
+
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    for item in data:
+        table_id = item['table_id']
+        print(table_id)
+        pile_no = item['pile_no']
+        print(pile_no)
+        new_case = item['assessment_case']
+        print(new_case)
+
+        cursor.execute("""
+            UPDATE assessment
+            SET `Assessment case` = %s
+            WHERE `Table ID` = %s AND `Pile No` = %s
+        """, (new_case, table_id, pile_no))
+
+    conn.commit()
+    conn.close()
+
+    return jsonify({"message": "Assessment Case(s) updated successfully."})

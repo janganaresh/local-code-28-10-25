@@ -1,0 +1,51 @@
+UPDATE assessment SET `Assessment case` = 'Case4', `Assessment Status` = 'OE Approved' WHERE `Table ID` = 'C64S22' AND `Pile No` = 1;
+UPDATE assessment SET `Assessment case` = 'Case4', `Assessment Status` = 'OE Approved' WHERE `Table ID` = 'C64S22' AND `Pile No` = 2;
+UPDATE assessment SET `Assessment case` = 'Case4', `Assessment Status` = 'OE Approved' WHERE `Table ID` = 'C64S22' AND `Pile No` = 3;
+UPDATE assessment SET `Assessment case` = 'Case3', `Assessment Status` = 'OE Approved' WHERE `Table ID` = 'C64S22' AND `Pile No` = 4;
+
+UPDATE assessment SET `Assessment case` = 'Case3', `Assessment Status` = 'OE Approved' WHERE `Table ID` = 'C65S22' AND `Pile No` = 1;
+UPDATE assessment SET `Assessment case` = 'Case3', `Assessment Status` = 'OE Approved' WHERE `Table ID` = 'C65S22' AND `Pile No` = 2;
+UPDATE assessment SET `Assessment case` = 'Case4', `Assessment Status` = 'OE Approved' WHERE `Table ID` = 'C65S22' AND `Pile No` = 3;
+UPDATE assessment SET `Assessment case` = 'Case4', `Assessment Status` = 'OE Approved' WHERE `Table ID` = 'C65S22' AND `Pile No` = 4;
+
+UPDATE assessment SET `Assessment case` = 'Case4', `Assessment Status` = 'OE Approved' WHERE `Table ID` = 'C66S22' AND `Pile No` = 1;
+UPDATE assessment SET `Assessment case` = 'Case4', `Assessment Status` = 'OE Approved' WHERE `Table ID` = 'C66S22' AND `Pile No` = 2;
+UPDATE assessment SET `Assessment case` = 'Case4', `Assessment Status` = 'OE Approved' WHERE `Table ID` = 'C66S22' AND `Pile No` = 3;
+UPDATE assessment SET `Assessment case` = 'Case3', `Assessment Status` = 'OE Approved' WHERE `Table ID` = 'C66S22' AND `Pile No` = 4;
+
+UPDATE assessment SET `Assessment case` = 'Case3', `Assessment Status` = 'OE Approved' WHERE `Table ID` = 'C67S23' AND `Pile No` = 1;
+UPDATE assessment SET `Assessment case` = 'Case4', `Assessment Status` = 'OE Approved' WHERE `Table ID` = 'C67S23' AND `Pile No` = 2;
+UPDATE assessment SET `Assessment case` = 'Case3', `Assessment Status` = 'OE Approved' WHERE `Table ID` = 'C67S23' AND `Pile No` = 3;
+UPDATE assessment SET `Assessment case` = 'Case4', `Assessment Status` = 'OE Approved' WHERE `Table ID` = 'C67S23' AND `Pile No` = 4;
+
+UPDATE assessment SET `Assessment case` = 'Case4', `Assessment Status` = 'OE Approved' WHERE `Table ID` = 'C68S24' AND `Pile No` = 1;
+UPDATE assessment SET `Assessment case` = 'Case4', `Assessment Status` = 'OE Approved' WHERE `Table ID` = 'C68S24' AND `Pile No` = 2;
+UPDATE assessment SET `Assessment case` = 'Case3', `Assessment Status` = 'OE Approved' WHERE `Table ID` = 'C68S24' AND `Pile No` = 3;
+UPDATE assessment SET `Assessment case` = 'Case4', `Assessment Status` = 'OE Approved' WHERE `Table ID` = 'C68S24' AND `Pile No` = 4;
+
+UPDATE assessment SET `Assessment case` = 'Case4', `Assessment Status` = 'OE Approved' WHERE `Table ID` = 'C68S23' AND `Pile No` = 1;
+UPDATE assessment SET `Assessment case` = 'Case4', `Assessment Status` = 'OE Approved' WHERE `Table ID` = 'C68S23' AND `Pile No` = 2;
+UPDATE assessment SET `Assessment case` = 'Case4', `Assessment Status` = 'OE Approved' WHERE `Table ID` = 'C68S23' AND `Pile No` = 3;
+UPDATE assessment SET `Assessment case` = 'Case4', `Assessment Status` = 'OE Approved' WHERE `Table ID` = 'C68S23' AND `Pile No` = 4;
+
+UPDATE assessment SET `Assessment case` = 'Case4', `Assessment Status` = 'OE Approved' WHERE `Table ID` = 'C67S22' AND `Pile No` = 1;
+UPDATE assessment SET `Assessment case` = 'Case4', `Assessment Status` = 'OE Approved' WHERE `Table ID` = 'C67S22' AND `Pile No` = 2;
+UPDATE assessment SET `Assessment case` = 'Case4', `Assessment Status` = 'OE Approved' WHERE `Table ID` = 'C67S22' AND `Pile No` = 3;
+UPDATE assessment SET `Assessment case` = 'Case4', `Assessment Status` = 'OE Approved' WHERE `Table ID` = 'C67S22' AND `Pile No` = 4;
+
+UPDATE assessment SET `Assessment case` = 'Case4', `Assessment Status` = 'OE Approved' WHERE `Table ID` = 'C66S21' AND `Pile No` = 1;
+UPDATE assessment SET `Assessment case` = 'Case4', `Assessment Status` = 'OE Approved' WHERE `Table ID` = 'C66S21' AND `Pile No` = 2;
+UPDATE assessment SET `Assessment case` = 'Case4', `Assessment Status` = 'OE Approved' WHERE `Table ID` = 'C66S21' AND `Pile No` = 3;
+UPDATE assessment SET `Assessment case` = 'Case4', `Assessment Status` = 'OE Approved' WHERE `Table ID` = 'C66S21' AND `Pile No` = 4;
+
+UPDATE assessment SET `Assessment case` = 'Case4', `Assessment Status` = 'OE Approved' WHERE `Table ID` = 'C65S21' AND `Pile No` = 1;
+UPDATE assessment SET `Assessment case` = 'Case4', `Assessment Status` = 'OE Approved' WHERE `Table ID` = 'C65S21' AND `Pile No` = 2;
+UPDATE assessment SET `Assessment case` = 'Case4', `Assessment Status` = 'OE Approved' WHERE `Table ID` = 'C65S21' AND `Pile No` = 3;
+UPDATE assessment SET `Assessment case` = 'Case4', `Assessment Status` = 'OE Approved' WHERE `Table ID` = 'C65S21' AND `Pile No` = 4;
+
+UPDATE assessment SET `Assessment case` = 'Case4', `Assessment Status` = 'OE Approved' WHERE `Table ID` = 'C64S21' AND `Pile No` = 1;
+UPDATE assessment SET `Assessment case` = 'Case4', `Assessment Status` = 'OE Approved' WHERE `Table ID` = 'C64S21' AND `Pile No` = 2;
+UPDATE assessment SET `Assessment case` = 'Case4', `Assessment Status` = 'OE Approved' WHERE `Table ID` = 'C64S21' AND `Pile No` = 3;
+UPDATE assessment SET `Assessment case` = 'Case4', `Assessment Status` = 'OE Approved' WHERE `Table ID` = 'C64S21' AND `Pile No` = 4;
+
+

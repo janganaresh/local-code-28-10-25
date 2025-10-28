@@ -1,0 +1,107 @@
+1.to download backup file in local db: mysqldump -u root -p remedydb assessment > assessment_backup_05-08-2025.sql
+2.to send backup file to linux server: scp assessment_backup_05-08-2025.sql root@89.116.122.75:/var/www/remedyapp/
+3.to dump the data in linux database:  mysql -u root -p remedydb < /var/www/remedyapp/assessment_backup_05-08-2025.sql
+
+
+1. to download backup file in local db: mysqldump -u root -p remedydb remedy > remedy_backup_05-08-2025.sql
+2. to send backup file to linux server: scp remedy_backup_05-08-2025.sql root@89.116.122.75:/var/www/remedyapp/
+3. to dump the data in linux database:  mysql -u root -p remedydb < /var/www/remedyapp/remedy_backup_05-08-2025.sql
+
+AssessmentPictures to server cmd
+1. scp -r "C:\Users\LENOVO\Desktop\picstoserver\*" root@89.116.122.75:/var/www/remedyapp/AssessmentPictures/
+
+mysql -u root -p remedydb < /var/www/remedyapp/comments_backup_22-06-2025.sql
+
+
+ncfrename''''
+
+import os
+import pandas as pd
+from PIL import Image
+
+# === CONFIG ===
+excel_path = r"C:\Users\LENOVO\Desktop\nocoderenames2.xlsx"
+base_path = r"C:\Users\LENOVO\Desktop\sumith"
+
+# === LOAD EXCEL ===
+df = pd.read_excel(excel_path)
+df.columns = df.columns.str.strip()
+
+# === LOOP THROUGH FOLDERS ===
+for folder in os.listdir(base_path):
+    folder_path = os.path.join(base_path, folder)
+    if os.path.isdir(folder_path):
+        parts = folder.split("_")
+        if len(parts) >= 4:
+            table_id = parts[1] + parts[2]   # C63S24
+            pile_no = parts[3].replace("P", "")  # 1
+
+            # Find matching Excel row
+            match = df[
+                (df["Table ID"].astype(str).str.upper() == table_id.upper()) &
+                (df["Pile No"].astype(str) == pile_no)
+            ]
+
+            if not match.empty:
+                assessment_id = match.iloc[0]["Assessment ID"]
+
+                # === Rename and compress images ===
+                images = [f for f in os.listdir(folder_path)
+                          if f.lower().endswith(('.jpg', '.jpeg', '.png'))]
+
+                for i, img in enumerate(sorted(images), start=1):
+                    ext = os.path.splitext(img)[1]
+                    new_img_name = f"{assessment_id}_{table_id}_Pile{pile_no}_Side{i}.jpg"  # Save all as JPG
+                    old_img_path = os.path.join(folder_path, img)
+                    new_img_path = os.path.join(folder_path, new_img_name)
+
+                    # Open and compress image
+                    with Image.open(old_img_path) as im:
+                        im = im.convert("RGB")  # ensure no alpha channel
+                        im.save(new_img_path, "JPEG", quality=40, optimize=True)  
+                        # quality=40 → ~150KB (tune between 30–60 if needed)
+
+                    os.remove(old_img_path)  # delete old large image
+                    print(f"Compressed + Renamed: {img} → {new_img_name}")
+
+                # === Rename folder ===
+                new_folder_path = os.path.join(base_path, assessment_id)
+                os.rename(folder_path, new_folder_path)
+                print(f"Folder renamed: {folder} → {assessment_id}\n")
+
+            else:
+                print(f"No match found for folder: {folder}")
+        else:
+            print(f"Skipping invalid folder: {folder}")
+
+print("✅ Done renaming + compressing images!")
+
+
+sumith 90d
+
+import os
+from PIL import Image
+
+# === CONFIG ===
+base_path = r"C:\Users\LENOVO\Desktop\sumith"  # already renamed Assessment ID folders
+
+# === LOOP THROUGH FOLDERS ===
+for folder in os.listdir(base_path):
+    folder_path = os.path.join(base_path, folder)
+    if os.path.isdir(folder_path):
+        images = [f for f in os.listdir(folder_path)
+                  if f.lower().endswith(('.jpg', '.jpeg', '.png'))]
+
+        for img in images:
+            img_path = os.path.join(folder_path, img)
+
+            try:
+                with Image.open(img_path) as im:
+                    im = im.convert("RGB")
+                    im = im.rotate(-90, expand=True)  # rotate 90° clockwise
+                    im.save(img_path, "JPEG", quality=40, optimize=True)  # overwrite same file
+                    print(f"✅ Rotated & saved: {folder}\\{img}")
+            except Exception as e:
+                print(f"❌ Error with {img_path}: {e}")
+
+print("🎉 All images rotated 90° clockwise and saved successfully!")
